@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="ProductProxy" startOnLoad="true" transports="https http" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <endpoint name="endpoint_urn_uuid_dce9d72d-c9b0-4fb7-b56c-512be913ab74">
+            <address uri="http://localhost:8080/ProductWebService"/>
+        </endpoint>
+        <inSequence>
+            <log description="Inbound"/>
+            <!--             <xslt key="conf:myresources/Request.xslt"/> -->
+            <log description="Before">
+                <property name="Message" value="Calling product service Proxy"/>
+            </log>
+        </inSequence>
+        <outSequence>
+            <log description="After">
+                <property name="Message" value="End Call product service again"/>
+            </log>
+            <!--             <xslt key="conf:myresources/Response.xslt"/> -->
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+</proxy>

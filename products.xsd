@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema
+    xmlns="http://www.dafydd.com/products/payload"
+    targetNamespace="http://www.dafydd.com/products/payload"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		
+	<xs:element name="ProductRequest" type="ProductRequest"/>
+	<xs:complexType name="ProductRequest">
+		<xs:sequence>
+			<xs:element name="ProductId" type="xs:string"/>
+		</xs:sequence>	
+	</xs:complexType>	
+	<xs:element name="ProductResponse" type="ProductResponse" />
+	<xs:complexType name="ProductResponse">
+		<xs:sequence>
+			<xs:element name="Product" type="Product"/>
+		</xs:sequence>	
+	</xs:complexType>
+
+	<xs:element name="ProductsRequests" type="ProductsRequests"/>
+	<xs:complexType name="ProductsRequests">
+		<xs:sequence>
+			<xs:element name="Brand" type="xs:string" minOccurs="0"/>
+		</xs:sequence>	
+	</xs:complexType>	
+
+	<xs:element name="ProductsResponse" type="ProductsResponse" />
+	<xs:complexType name="ProductsResponse">
+		<xs:sequence>
+			<xs:element name="Products" type="Products"/>
+		</xs:sequence>	
+	</xs:complexType>
+	
+	<xs:complexType name="Products">
+		<xs:sequence>
+			<xs:element name="Product" type="Product" maxOccurs="unbounded"/>
+		</xs:sequence>	
+	</xs:complexType>	
+	
+	<xs:complexType name="Product">
+		<xs:sequence>
+			<xs:element name="ProductId" type="xs:string" />
+			<xs:element name="Brand" type="xs:string" />
+			<xs:element name="Specification" type="xs:string"/>
+			<xs:element name="Price">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="6"/>
+						<xs:fractionDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

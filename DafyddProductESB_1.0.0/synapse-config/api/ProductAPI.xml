@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/products" name="ProductAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/televisions">
+        <inSequence>
+            <log description="Called Products">
+                <property name="Message" value="Calling product service"/>
+            </log>
+            <!--             <property name="pricefrom" value="get-property('query.param.pricefrom')" /> -->
+            <!--             <log level="custom">
+                <property name="pricefrom" expression="get-property(pricefrom)"/>
+            </log> -->
+            <property name="messageType" scope="default" type="STRING" value="text/xml"/>
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:pay="http://www.dafydd.com/products/payload" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <pay:ProductsRequests>
+                                <Brand>Samsung</Brand>
+                            </pay:ProductsRequests>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args/>
+            </payloadFactory>
+            <log level="full"/>
+            <log description="Called Products">
+                <property name="Message" value="Preserver props"/>
+            </log>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:8080/ProductWebService"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <log description="Returned SOAP service for Products">
+                <property name="Message" value="Called product service"/>
+            </log>
+            <log level="full"/>
+            <!-- TODO the soap response is not returning the data -->
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:pay="http://www.dafydd.com/products/payload" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <pay:ProductsResponse>
+                                <Products>
+                                    <!--1 or more repetitions:-->
+                                    <Product>
+                                        <ProductId>1</ProductId>
+                                        <Brand>Samsung</Brand>
+                                        <Specification>Oled</Specification>
+                                        <Price>999.99</Price>
+                                    </Product>
+                                    <Product>
+                                        <ProductId>2</ProductId>
+                                        <Brand>Panasonic</Brand>
+                                        <Specification>Oled</Specification>
+                                        <Price>1299.99</Price>
+                                    </Product>
+                                    <Product>
+                                        <ProductId>3</ProductId>
+                                        <Brand>Samsung</Brand>
+                                        <Specification>HD</Specification>
+                                        <Price>499.99</Price>
+                                    </Product>
+                                </Products>
+                            </pay:ProductsResponse>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args/>
+            </payloadFactory>
+            <xslt key="conf:myresources/Response.xslt"/>
+            <!-- 
+            This xslt should produce the below json, but it wrapping it in a SOAP body and stripping it back. I've therefore hard coded for an example                  
+            -->
+            <log level="full"/>
+            <property name="messageType" scope="default" type="STRING" value="application/json"/>
+            <payloadFactory media-type="json">
+                <format>
+                	{ "Products": [ { "ProductId": "1", "Brand": "Samsung", "Specification": "Oled", "Price": "999.99" }, { "ProductId": "2", "Brand": "Panasonic", "Specification": "Oled", "Price": "1299.99" }, { "ProductId": "3", "Brand": "Samsung", "Specification": "HD", "Price": "499.99" } ]}
+                </format>
+                <args/>
+            </payloadFactory>
+            <log level="full"/>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log description="ERROR Calling Products">
+                <property name="Message" value="ERROR Calling product service"/>
+            </log>
+            <log level="full"/>
+        </faultSequence>
+    </resource>
+</api>

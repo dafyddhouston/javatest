@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://www.dafydd.com/products/ws"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:prodp="http://www.dafydd.com/products/payload"
+                  xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/"
+                  targetNamespace="http://www.dafydd.com/products/ws">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dafydd.com/products/ws">
+            <xs:import namespace="http://www.dafydd.com/products/payload" schemaLocation="products.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ProductRequest">
+        <wsdl:part name="parameters" element="prodp:ProductRequest" />
+    </wsdl:message>
+    <wsdl:message name="ProductResponse">
+        <wsdl:part name="parameters" element="prodp:ProductResponse" />
+    </wsdl:message>
+
+	<wsdl:message name="ProductsRequest">
+        <wsdl:part name="parameters" element="prodp:ProductsRequests" />
+    </wsdl:message>
+    <wsdl:message name="ProductsResponse">
+        <wsdl:part name="parameters" element="prodp:ProductsResponse" />
+    </wsdl:message>
+
+    <wsdl:portType name="ProductWebService">
+        <wsdl:documentation>
+            <description label="Description">The product web service contains all of the operations needed retrieving product information</description>
+        </wsdl:documentation>
+        
+        <wsdl:operation name="GetProduct">
+            <wsdl:documentation>
+                <description label="Description">Return a single product.</description>
+                <cacheable label="Cacheable">No</cacheable>
+            </wsdl:documentation>
+            <wsdl:input message="tns:ProductRequest"/>
+            <wsdl:output message="tns:ProductResponse"/>
+        </wsdl:operation>
+		
+        <wsdl:operation name="GetProducts">
+            <wsdl:documentation>
+                <description label="Description">Return a list of products</description>
+                <cacheable label="Cacheable">No</cacheable>
+            </wsdl:documentation>
+            <wsdl:input message="tns:ProductsRequest"/>
+            <wsdl:output message="tns:ProductsResponse"/>
+        </wsdl:operation>		
+    </wsdl:portType>
+
+    <wsdl:binding name="ProductWebServiceImpl" type="tns:ProductWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetProduct">
+            <soap:operation soapAction="http://www.dafydd.com/products/ws/GetProduct"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProducts">
+            <soap:operation soapAction="http://www.dafydd.com/products/ws/GetProducts"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
+        </wsdl:operation>		
+    </wsdl:binding>
+
+    <wsdl:service name="ProductWebServiceEndpoint">
+        <wsdl:port name="ProductWebServicePort" binding="tns:ProductWebServiceImpl">
+            <soap:address location="http://"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
