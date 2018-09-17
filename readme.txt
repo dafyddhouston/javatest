@@ -31,7 +31,7 @@ e.g.
 </xsl:template>
 
 With a bit more time
-1. I would have used a switch mediator to apply the correct XSLT (https://docs.wso2.com/display/EI611/Routing+Requests+Based+on+Message+Content)
+1. I would have used a switch mediator to apply the correct XSLT (https://docs.wso2.com/display/EI611/Routing+Requests+Based+on+Message+Content) based on the pricefrom parameter
 2. I also would have done some validations on the SOAP responses and returned 400 bad parameters and 404 for wrong id lookups, 500 for server errors (I had the mocks in place)
 3. Added another endpoint for a single product lookup using a uri parameter
 
