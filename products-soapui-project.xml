@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="16cc0017-afe7-4076-aa5b-211e6d03f29f" activeEnvironment="Default" name="products" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="0fa11f12-6d37-4652-a8bb-25565ab0005b" wsaVersion="NONE" name="ProductWebServiceImpl" type="wsdl" bindingName="{http://www.dafydd.com/products/ws}ProductWebServiceImpl" soapVersion="1_1" anonymous="optional" definition="file:/C:/dafydd/New%20folder/products.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/dafydd/New%20folder/products.wsdl"><con:part><con:url>file:/C:/dafydd/New%20folder/products.wsdl</con:url><con:content><![CDATA[<!--<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:tns="http://www.bglgroup.net/communications/email/v1_0/ws"
-                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                  xmlns:emailp="http://www.bglgroup.net/communications/email/v1_0/payload"
-                  xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/"
-                  targetNamespace="http://www.bglgroup.net/communications/email/v1_0/ws">
-    <wsdl:types>
-        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bglgroup.net/communications/email/v1_0/ws">
-            <xs:import namespace="http://www.bglgroup.net/communications/email/v1_0/payload" schemaLocation="email_v1_0_payload.xsd"/>
-        </xs:schema>
-    </wsdl:types>
-
-    <wsdl:message name="SendEmailRequest">
-        <wsdl:part name="SendEmailRequestParameters" element="emailp:SendEmailRequest" />
-    </wsdl:message>
-    <wsdl:message name="SendEmailResponse">
-        <wsdl:part name="SendEmailResponseParameters" element="emailp:SendEmailResponse" />
-    </wsdl:message>-->
-<wsdl:definitions targetNamespace="http://www.dafydd.com/products/ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.dafydd.com/products/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prodp="http://www.dafydd.com/products/payload" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/">
+<con:soapui-project id="16cc0017-afe7-4076-aa5b-211e6d03f29f" activeEnvironment="Default" name="products" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="0fa11f12-6d37-4652-a8bb-25565ab0005b" wsaVersion="NONE" name="ProductWebServiceImpl" type="wsdl" bindingName="{http://www.dafydd.com/products/ws}ProductWebServiceImpl" soapVersion="1_1" anonymous="optional" definition="C:/dafydd/test/javatest/products.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/dafydd/test/javatest/products.wsdl"><con:part><con:url>file:/C:/dafydd/test/javatest/products.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.dafydd.com/products/ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.dafydd.com/products/ws" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prodp="http://www.dafydd.com/products/payload" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/">
   <wsdl:types>
     <xs:schema targetNamespace="http://www.dafydd.com/products/ws">
       <xs:import namespace="http://www.dafydd.com/products/payload" schemaLocation="products.xsd"/>
@@ -83,7 +64,7 @@
       <soap:address location="http://"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\dafydd\New%20folder\products.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.dafydd.com/products/payload" xmlns="http://www.dafydd.com/products/payload" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\dafydd\test\javatest\products.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.dafydd.com/products/payload" xmlns="http://www.dafydd.com/products/payload" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="ProductRequest" type="ProductRequest"/>
   <xs:complexType name="ProductRequest">
     <xs:sequence>
